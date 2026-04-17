@@ -295,139 +295,120 @@
   .photo-corner.br { bottom: 12px; right: 12px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
 
 
-  /* ── TIMELINE (vertical) ─────────────── */
+  /* ── TIMELINE ──────────────────────── */
   #timeline { background: rgba(0,0,0,0.2); }
-  .vtl {
+  .timeline-wrap {
     position: relative;
     margin-top: 64px;
-    padding-left: 52px;
   }
-  .vtl::before {
-    content: '';
+  .timeline-line {
     position: absolute;
-    left: 15px;
-    top: 8px;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--gold) 0%, rgba(201,168,76,0.15) 100%);
+    top: 24px; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3) 10%, rgba(201,168,76,0.3) 90%, transparent);
   }
-  .vtl-entry {
+  .timeline-nodes {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
     position: relative;
-    margin-bottom: 52px;
   }
-  .vtl-entry:last-child { margin-bottom: 0; }
-  .vtl-dot {
-    position: absolute;
-    left: -44px;
-    top: 6px;
-    width: 16px; height: 16px;
+  .timeline-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .node-dot {
+    width: 14px; height: 14px;
     border-radius: 50%;
     background: var(--gold);
-    box-shadow: 0 0 0 5px rgba(201,168,76,0.18), 0 0 16px rgba(201,168,76,0.35);
-    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 0 4px rgba(201,168,76,0.2);
+    flex-shrink: 0;
+    position: relative;
     z-index: 1;
+    transition: transform 0.3s, box-shadow 0.3s;
   }
-  .vtl-entry:hover .vtl-dot {
-    transform: scale(1.4);
-    box-shadow: 0 0 0 8px rgba(201,168,76,0.15), 0 0 24px rgba(201,168,76,0.5);
+  .timeline-node:hover .node-dot {
+    transform: scale(1.5);
+    box-shadow: 0 0 0 8px rgba(201,168,76,0.15), 0 0 20px rgba(201,168,76,0.4);
   }
-  .vtl-year {
+  .node-card {
+    margin-top: 20px;
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    cursor: default;
+    width: 100%;
+  }
+  .timeline-node:hover .node-card {
+    transform: translateY(-6px);
+    border-color: rgba(201,168,76,0.4);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  }
+  .node-years {
     font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
+    font-weight: 600;
+    letter-spacing: 0.15em;
     color: var(--gold);
     text-transform: uppercase;
     margin-bottom: 10px;
   }
-  .vtl-card {
-    background: var(--card-bg);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(201,168,76,0.13);
-    border-left: 3px solid rgba(201,168,76,0.5);
-    border-radius: 0 14px 14px 0;
-    padding: 28px 32px;
-    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-  }
-  .vtl-entry:hover .vtl-card {
-    border-color: rgba(201,168,76,0.45);
-    border-left-color: var(--gold);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.35);
-    transform: translateX(4px);
-  }
-  .vtl-title {
+  .node-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.18rem;
-    font-weight: 700;
-    line-height: 1.3;
-    color: var(--text-primary);
-    margin-bottom: 4px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: 6px;
   }
-  .vtl-org {
-    font-size: 0.8rem;
-    color: var(--gold-light);
-    margin-bottom: 14px;
-    opacity: 0.85;
-  }
-  .vtl-desc {
-    font-size: 0.875rem;
+  .node-org {
+    font-size: 0.72rem;
     color: var(--text-mid);
-    line-height: 1.65;
-    margin-bottom: 16px;
+    line-height: 1.4;
   }
-  .vtl-honour {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    margin-bottom: 16px;
-    padding: 10px 14px;
-    background: rgba(201,168,76,0.07);
-    border-radius: 8px;
-    border: 1px solid rgba(201,168,76,0.18);
-  }
-  .vtl-honour-icon {
-    font-size: 0.85rem;
-    color: var(--gold);
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-  .vtl-honour-text {
-    font-size: 0.78rem;
-    color: var(--text-mid);
-    line-height: 1.5;
-    font-style: italic;
-  }
-  .vtl-logos {
+  .node-logos {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 4px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(201,168,76,0.12);
   }
-  .vtl-logo {
+  .node-logo-img {
+    height: 30px;
+    width: auto;
+    max-width: 80px;
+    object-fit: contain;
+    opacity: 0.55;
+    transition: opacity 0.3s;
+    display: block;
+  }
+  .timeline-node:hover .node-logo-img { opacity: 1; }
+  .node-logo-tag {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 5px 12px;
-    border-radius: 6px;
-    font-size: 0.65rem;
+    height: 26px;
+    padding: 0 9px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 4px;
+    font-size: 0.58rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.07em;
     text-transform: uppercase;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: rgba(255,255,255,0.65);
-    transition: background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    transition: background 0.25s, color 0.25s;
   }
-  .vtl-entry:hover .vtl-logo {
-    background: rgba(255,255,255,0.08);
-    border-color: rgba(201,168,76,0.3);
-    color: rgba(255,255,255,0.85);
+  .timeline-node:hover .node-logo-tag {
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.78);
   }
-  .vtl-logo .dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  /* node-badge kept for compat */
   .node-badge { display: none; }
 
   /* ── ACHIEVEMENTS ────────────────────── */
@@ -684,7 +665,7 @@
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
     #profile .profile-grid { grid-template-columns: 1fr; gap: 40px; }
     .profile-photo-wrap { order: -1; }
-    .vtl { padding-left: 32px; }
+    .timeline-nodes { grid-template-columns: 1fr 1fr; }
     .achievements-grid { grid-template-columns: 1fr; }
     .awards-grid { grid-template-columns: 1fr 1fr; }
     .fit-intro { grid-template-columns: 1fr; gap: 32px; }
@@ -780,111 +761,85 @@
     <div class="section-label">Career Path</div>
     <h2 class="section-title reveal">International Protocol &<br>Institutional Coordination</h2>
     <p class="section-subtitle reveal">A steady progression through the most demanding diplomatic environments in Geneva, Brussels, Strasbourg, Bern, and Chisinau.</p>
-    <div class="vtl reveal">
+    <div class="timeline-wrap reveal">
+      <div class="timeline-line"></div>
+      <div class="timeline-nodes">
 
-      <!-- 2008–2012 -->
-      <div class="vtl-entry">
-        <div class="vtl-dot"></div>
-        <div class="vtl-year">2008 &ndash; 2012</div>
-        <div class="vtl-card">
-          <div class="vtl-title">Programmes &amp; Policy Officer</div>
-          <div class="vtl-org">Council of Europe Office &amp; Soros Foundation &mdash; Chisinau, Moldova</div>
-          <div class="vtl-desc">Designed and delivered policy and civil society engagement programmes. Built early competencies in institutional coordination, event organisation, and structured reporting within a European multilateral framework. Obtained the Certificate in Diplomatic Protocol at the European School of Protocol.</div>
-          <div class="vtl-logos">
-            <span class="vtl-logo"><span class="dot" style="background:#F07000"></span>Council of Europe</span>
-            <span class="vtl-logo"><span class="dot" style="background:#003FA5"></span>Soros Foundation</span>
-            <span class="vtl-logo"><span class="dot" style="background:#C9A84C"></span>Europrotocol</span>
+        <div class="timeline-node">
+          <div class="node-dot"></div>
+          <div class="node-card">
+            <div class="node-years">2008 &ndash; 2012</div>
+            <div class="node-title">Programmes &amp; Policy Officer</div>
+            <div class="node-org">Council of Europe Office<br>Chisinau, Moldova</div>
+            <div class="node-logos">
+              <img class="node-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/CoE_logo_%282013%29.svg/120px-CoE_logo_%282013%29.svg.png" alt="Council of Europe" onerror="this.outerHTML='<span class=node-logo-tag>CoE</span>'">
+              <span class="node-logo-tag">Europrotocol</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- 2014–2016 -->
-      <div class="vtl-entry">
-        <div class="vtl-dot"></div>
-        <div class="vtl-year">2014 &ndash; 2016</div>
-        <div class="vtl-card">
-          <div class="vtl-title">First Secretary, Dept. for Economic Cooperation with EU</div>
-          <div class="vtl-org">Ministry of Foreign Affairs &mdash; Chisinau, Moldova</div>
-          <div class="vtl-desc">Coordinated 80+ national and regional events, serving as a strategic liaison between EU institutions, line ministries, and civil society. Supported the Ministry's European integration agenda through structured reporting and high-level correspondence.</div>
-          <div class="vtl-logos">
-            <span class="vtl-logo"><span class="dot" style="background:#003FA5"></span>Ministry of Foreign Affairs</span>
-            <span class="vtl-logo"><span class="dot" style="background:#003FA5"></span>European Commission</span>
+        <div class="timeline-node">
+          <div class="node-dot"></div>
+          <div class="node-card">
+            <div class="node-years">2014 &ndash; 2016</div>
+            <div class="node-title">First Secretary</div>
+            <div class="node-org">Ministry of Foreign Affairs<br>Chisinau, Moldova</div>
+            <div class="node-logos">
+              <img class="node-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/60px-Flag_of_Europe.svg.png" alt="EU" onerror="this.outerHTML='<span class=node-logo-tag>EU</span>'">
+              <span class="node-logo-tag">MFA Moldova</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- 2016–2019 -->
-      <div class="vtl-entry">
-        <div class="vtl-dot"></div>
-        <div class="vtl-year">2016 &ndash; 2019</div>
-        <div class="vtl-card">
-          <div class="vtl-title">First Secretary / Protocol Officer</div>
-          <div class="vtl-org">Permanent Mission of Moldova to the EU &mdash; Brussels, Belgium</div>
-          <div class="vtl-desc">Organised senior-level visits to EU institutions and managed full protocol coordination for ministerial delegations. Negotiated the Eastern Partnership Summit Declaration, endorsed by 28 EU Heads of State. Appointed Moldova's first-ever Eastern Partnership Rapporteur, serving as direct liaison between EU panels and senior officials.</div>
-          <div class="vtl-honour">
-            <span class="vtl-honour-icon">&#9733;</span>
-            <span class="vtl-honour-text">Appointed first-ever EaP Rapporteur &mdash; European Union, 2017</span>
-          </div>
-          <div class="vtl-logos">
-            <span class="vtl-logo"><span class="dot" style="background:#003FA5"></span>European Commission</span>
-            <span class="vtl-logo"><span class="dot" style="background:#003FA5"></span>European Parliament</span>
-            <span class="vtl-logo"><span class="dot" style="background:#003FA5"></span>Council of the EU</span>
-            <span class="vtl-logo"><span class="dot" style="background:#003FA5"></span>European Council</span>
+        <div class="timeline-node">
+          <div class="node-dot"></div>
+          <div class="node-card">
+            <div class="node-years">2016 &ndash; 2019</div>
+            <div class="node-title">First Secretary / Protocol Officer</div>
+            <div class="node-org">Permanent Mission of Moldova to EU<br>Brussels, Belgium</div>
+            <div class="node-logos">
+              <img class="node-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/60px-Flag_of_Europe.svg.png" alt="EU" onerror="this.outerHTML='<span class=node-logo-tag>EU</span>'">
+              <span class="node-logo-tag">EC</span>
+              <span class="node-logo-tag">EP</span>
+              <span class="node-logo-tag">Council EU</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- 2019–2021 -->
-      <div class="vtl-entry">
-        <div class="vtl-dot"></div>
-        <div class="vtl-year">2019 &ndash; 2021</div>
-        <div class="vtl-card">
-          <div class="vtl-title">Head of Unit, Economic &amp; Sectoral Cooperation with EU</div>
-          <div class="vtl-org">Ministry of Foreign Affairs, Directorate for European Integration &mdash; Chisinau, Moldova</div>
-          <div class="vtl-desc">Led national EU integration coordination, acting as the central contact point for 20+ public authorities. Coordinated 40+ senior-level EU ministerial meetings and provided direct protocol guidance to the Minister of Foreign Affairs.</div>
-          <div class="vtl-honour">
-            <span class="vtl-honour-icon">&#9733;</span>
-            <span class="vtl-honour-text">Honorary Diploma for Exemplary Exercise of Official Duties &mdash; Ministry of Foreign Affairs, August 2020</span>
-          </div>
-          <div class="vtl-logos">
-            <span class="vtl-logo"><span class="dot" style="background:#003FA5"></span>Ministry of Foreign Affairs</span>
-            <span class="vtl-logo"><span class="dot" style="background:#003FA5"></span>European Commission</span>
-            <span class="vtl-logo"><span class="dot" style="background:#FFD700"></span>Republic of Moldova</span>
+        <div class="timeline-node">
+          <div class="node-dot"></div>
+          <div class="node-card">
+            <div class="node-years">2019 &ndash; 2021</div>
+            <div class="node-title">Head of Unit for EU Cooperation</div>
+            <div class="node-org">Ministry of Foreign Affairs<br>Chisinau, Moldova</div>
+            <div class="node-logos">
+              <img class="node-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/60px-Flag_of_Europe.svg.png" alt="EU" onerror="this.outerHTML='<span class=node-logo-tag>EU</span>'">
+              <span class="node-logo-tag">MFA Moldova</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- 2021–2025 -->
-      <div class="vtl-entry">
-        <div class="vtl-dot"></div>
-        <div class="vtl-year">2021 &ndash; 2025</div>
-        <div class="vtl-card">
-          <div class="vtl-title">Counsellor / Protocol Officer</div>
-          <div class="vtl-org">Permanent Mission of Moldova to the UN, WTO &amp; International Organisations &mdash; Geneva, Switzerland</div>
-          <div class="vtl-desc">Central coordination point for 150+ high-level events involving Heads of State, Ministers, and Ambassadors. Led Moldova's WIPO General Assemblies Chairmanship (2022&ndash;23) and the ILO International Labour Conference Chairmanship (2024). Coordinated 56 Heads of State at EPC Summit 2023. Negotiated the Riyadh Design Law Treaty on behalf of 19 states. Liaison with 20+ UN agencies, EU institutions, World Economic Forum, and 50+ member states.</div>
-          <div class="vtl-honour">
-            <span class="vtl-honour-icon">&#9733;</span>
-            <span class="vtl-honour-text">Country&#39;s Best Diplomat for Outstanding Achievements &mdash; Ministry of Foreign Affairs, January 2025</span>
-          </div>
-          <div class="vtl-honour">
-            <span class="vtl-honour-icon">&#9733;</span>
-            <span class="vtl-honour-text">Honorary Diploma for High Professionalism in Organising the European Political Community Summit &mdash; June 2023</span>
-          </div>
-          <div class="vtl-logos">
-            <span class="vtl-logo"><span class="dot" style="background:#009EDB"></span>United Nations</span>
-            <span class="vtl-logo"><span class="dot" style="background:#009EDB"></span>UNECE</span>
-            <span class="vtl-logo"><span class="dot" style="background:#006CB7"></span>ILO</span>
-            <span class="vtl-logo"><span class="dot" style="background:#009EDB"></span>WIPO</span>
-            <span class="vtl-logo"><span class="dot" style="background:#009EDB"></span>WHO</span>
-            <span class="vtl-logo"><span class="dot" style="background:#009EDB"></span>IOM</span>
-            <span class="vtl-logo"><span class="dot" style="background:#009EDB"></span>ITU</span>
-            <span class="vtl-logo"><span class="dot" style="background:#8B0000"></span>WTO</span>
-            <span class="vtl-logo"><span class="dot" style="background:#000000"></span>World Economic Forum</span>
-            <span class="vtl-logo"><span class="dot" style="background:#FF0000"></span>Switzerland</span>
+        <div class="timeline-node">
+          <div class="node-dot"></div>
+          <div class="node-card">
+            <div class="node-years">2021 &ndash; 2025</div>
+            <div class="node-title">Counsellor / Protocol Officer</div>
+            <div class="node-org">Permanent Mission to UN, WTO &amp; IOs<br>Geneva, Switzerland</div>
+            <div class="node-logos">
+              <img class="node-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/UN_emblem_blue.svg/60px-UN_emblem_blue.svg.png" alt="UN" onerror="this.outerHTML='<span class=node-logo-tag>UN</span>'">
+              <img class="node-logo-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Switzerland.svg/40px-Flag_of_Switzerland.svg.png" alt="Switzerland" onerror="this.outerHTML='<span class=node-logo-tag>CH</span>'">
+              <span class="node-logo-tag">ILO</span>
+              <span class="node-logo-tag">WIPO</span>
+              <span class="node-logo-tag">WHO</span>
+              <span class="node-logo-tag">WTO</span>
+              <span class="node-logo-tag">WEF</span>
+              <span class="node-logo-tag">IOM</span>
+              <span class="node-logo-tag">ITU</span>
+            </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
 </section>
