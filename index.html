@@ -173,10 +173,14 @@
 
   /* ── STATS ───────────────────────────── */
   #stats {
+    position: absolute;
+    bottom: 80px;
+    left: 0; right: 0;
+    z-index: 2;
     background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.04));
     border-top: 1px solid rgba(201,168,76,0.2);
     border-bottom: 1px solid rgba(201,168,76,0.2);
-    padding: 60px 48px;
+    padding: 32px 48px;
   }
   .stats-grid {
     max-width: 1100px;
@@ -289,22 +293,7 @@
   }
   .photo-corner.tl { top: 12px; left: 12px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
   .photo-corner.br { bottom: 12px; right: 12px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
-  .languages-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 32px;
-  }
-  .lang-pill {
-    padding: 6px 16px;
-    border-radius: 100px;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-  }
-  .lang-pill.native { background: var(--gold); color: var(--navy); }
-  .lang-pill.fluent { background: rgba(201,168,76,0.2); color: var(--gold-light); border: 1px solid rgba(201,168,76,0.4); }
-  .lang-pill.working { background: rgba(255,255,255,0.07); color: var(--text-light); border: 1px solid rgba(255,255,255,0.15); }
+
 
   /* ── TIMELINE ────────────────────────── */
   #timeline { background: rgba(0,0,0,0.2); }
@@ -686,33 +675,32 @@
     <p class="hero-motto">"Protocol, when executed at the highest level, becomes invisible — yet enables everything."</p>
     <a href="#profile" class="hero-cta">Explore Profile</a>
   </div>
+  <!-- STATS -->
+  <div id="stats">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-num" data-target="14">0</div>
+        <div class="stat-label">Years in Diplomatic<br>Protocol & Coordination</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-num" data-target="150">0</div>
+        <div class="stat-label">High-Level Visits &<br>Representational Events</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-num" data-target="20">0</div>
+        <div class="stat-label">UN Agencies &<br>International Organizations</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-num" data-target="56">0</div>
+        <div class="stat-label">Heads of State Managed<br>at a Single Event</div>
+      </div>
+    </div>
+  </div>
   <div class="scroll-hint">
     <span>Scroll</span>
     <div class="arrow"></div>
   </div>
 </section>
-
-<!-- STATS -->
-<div id="stats">
-  <div class="stats-grid">
-    <div class="stat-item reveal">
-      <div class="stat-num" data-target="14">0</div>
-      <div class="stat-label">Years in Diplomatic<br>Protocol & Coordination</div>
-    </div>
-    <div class="stat-item reveal reveal-delay-1">
-      <div class="stat-num" data-target="150">0</div>
-      <div class="stat-label">High-Level Visits &<br>Representational Events</div>
-    </div>
-    <div class="stat-item reveal reveal-delay-2">
-      <div class="stat-num" data-target="20">0</div>
-      <div class="stat-label">UN Agencies &<br>International Organizations</div>
-    </div>
-    <div class="stat-item reveal reveal-delay-3">
-      <div class="stat-num" data-target="56">0</div>
-      <div class="stat-label">Heads of State Managed<br>at a Single Event</div>
-    </div>
-  </div>
-</div>
 
 <!-- PROFILE -->
 <section id="profile">
@@ -722,15 +710,9 @@
     <div class="profile-grid">
       <div class="profile-text reveal">
         <p>Results-driven protocol and diplomatic affairs professional with over 14 years of experience in the design and organisation of high-level visit and event programmes within complex international environments.</p>
-        <p>Extensive engagement with global institutions, including more than 20 UN agencies, the European Union, the World Economic Forum, and over 50 member states. Coordinated and delivered 150+ high-level visits and representational events involving Heads of State, Ministers, and Ambassadors across Geneva, Brussels, Bern, and Chisinau.</p>
+        <p>Extensive engagement with global institutions, including more than 20 UN agencies, the European Union, the World Economic Forum, and over 50 member states. Coordinated and delivered 150+ high-level visits and representational events involving Heads of State, Ministers, and Ambassadors across Geneva, Brussels, Strasbourg, Bern, and Chisinau.</p>
         <p>Advised senior leadership on diplomatic protocol, ceremonial precedence, and stakeholder engagement strategy. Proven ability to operate as a central coordination point across multiple services, adapt to last-minute changes, and maintain exceptional service standards.</p>
-        <div class="languages-wrap">
-          <span class="lang-pill native">Romanian — Native</span>
-          <span class="lang-pill fluent">English — Fluent</span>
-          <span class="lang-pill fluent">Russian — Fluent</span>
-          <span class="lang-pill working">French — Working</span>
-          <span class="lang-pill working">Spanish — Beginner</span>
-        </div>
+
       </div>
       <div class="profile-photo-wrap reveal reveal-delay-2">
         <div class="photo-frame">
@@ -749,7 +731,7 @@
   <div class="section-inner">
     <div class="section-label">Career Path</div>
     <h2 class="section-title reveal">International Protocol &<br>Institutional Coordination</h2>
-    <p class="section-subtitle reveal">A steady progression through the most demanding diplomatic environments in Geneva, Brussels, and Chisinau.</p>
+    <p class="section-subtitle reveal">A steady progression through the most demanding diplomatic environments in Geneva, Brussels, Strasbourg, Bern, and Chisinau.</p>
     <div class="timeline-wrap reveal">
       <div class="timeline-line"></div>
       <div class="timeline-nodes">
@@ -759,7 +741,6 @@
             <div class="node-years">2008 – 2012</div>
             <div class="node-title">Programmes & Policy Officer</div>
             <div class="node-org">Soros Foundation &<br>Council of Europe Office<br>Chisinau, Moldova</div>
-            <span class="node-badge">Foundation</span>
           </div>
         </div>
         <div class="timeline-node">
@@ -768,7 +749,6 @@
             <div class="node-years">2014 – 2016</div>
             <div class="node-title">First Secretary</div>
             <div class="node-org">Dept. for Economic Cooperation with EU<br>Ministry of Foreign Affairs<br>Chisinau</div>
-            <span class="node-badge">EU Liaison</span>
           </div>
         </div>
         <div class="timeline-node">
@@ -777,7 +757,6 @@
             <div class="node-years">2016 – 2019</div>
             <div class="node-title">First Secretary / Protocol Officer</div>
             <div class="node-org">Permanent Mission of Moldova to EU<br>Brussels, Belgium</div>
-            <span class="node-badge">Protocol</span>
           </div>
         </div>
         <div class="timeline-node">
@@ -786,7 +765,6 @@
             <div class="node-years">2019 – 2021</div>
             <div class="node-title">Head of Unit for EU Cooperation</div>
             <div class="node-org">Ministry of Foreign Affairs<br>Directorate for European Integration<br>Chisinau</div>
-            <span class="node-badge">Leadership</span>
           </div>
         </div>
         <div class="timeline-node">
@@ -795,7 +773,6 @@
             <div class="node-years">2021 – 2025</div>
             <div class="node-title">Counsellor / Protocol Officer</div>
             <div class="node-org">Permanent Mission to UN, WTO & IOs<br>Geneva, Switzerland</div>
-            <span class="node-badge">★ Senior / Geneva</span>
           </div>
         </div>
       </div>
